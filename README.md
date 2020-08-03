@@ -18,7 +18,7 @@ A game about the adventures of a broken tape recorder.
 - Use you antenna to kill enemies? 
 - Recharge your power bar from power out let to use your button’s special abilities
 - Level is a simple platformer, no fancy stuff, just simple ground and levitating platforms
-#### How does the player is attacked?
+#### How does the player gets attacked?
 - Enemies : 
    - Record machines who throws records at you 
 - Environment : [**Optional**]
