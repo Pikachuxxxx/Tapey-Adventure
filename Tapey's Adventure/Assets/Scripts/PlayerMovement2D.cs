@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerMovement2D : MonoBehaviour
 {
     private Rigidbody2D _playerRB;
+    private Animator _playerAC;
     private float InputX;
     private float InputY;
 
@@ -28,9 +29,10 @@ public class PlayerMovement2D : MonoBehaviour
     void Start()
     {
         _playerRB = GetComponent<Rigidbody2D>();
-        _playerRB.gravityScale = 4f;
+        _playerAC = GetComponent<Animator>();
+        _playerRB.gravityScale = 6f;
     }
-
+ 
     void Update()
     {
         // Getting the Input
@@ -39,13 +41,21 @@ public class PlayerMovement2D : MonoBehaviour
 
         //Flip the player based on the Input
         if (InputX > 0)
+        {
             transform.eulerAngles = new Vector3(0, 0, 0);
-        else if(InputX < 0)
+            _playerAC.SetBool("Walking", true);
+        }
+        else if (InputX < 0)
+        {
             transform.eulerAngles = new Vector3(0, 180, 0);
+            _playerAC.SetBool("Walking", true);
+        }
+        else if (InputX == 0) _playerAC.SetBool("Walking", false);
 
 
         // Check wether the player is grounded or not
         isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, whatIsGround);
+        print(isGrounded);
 
         // If the player is grounded enable him to jump 
         if(isGrounded && Input.GetKeyDown(KeyCode.Space))
@@ -53,7 +63,7 @@ public class PlayerMovement2D : MonoBehaviour
             _playerRB.velocity = Vector2.up * jumpForce;
             isJumping = true;
             jumpTimeCounter = jumpTime;
-         }
+        }
 
         // Enabling the player mario like jump
         if (Input.GetKey(KeyCode.Space) && isJumping)
