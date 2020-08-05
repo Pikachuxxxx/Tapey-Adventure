@@ -48,6 +48,7 @@ public class Enemy : MonoBehaviour
             print("Enemy says KrrKrr....");
             Instantiate(deathVFX, transform.position, Quaternion.identity);
             Destroy(gameObject);
+            Destroy(collision.gameObject);
         }
     }
 }

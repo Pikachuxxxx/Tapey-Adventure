@@ -15,11 +15,6 @@ public class cassetteBullet : MonoBehaviour
         bulletRB = GetComponent<Rigidbody2D>();
         bulletRB.velocity = transform.right * bulletSpeed;
         bulletRB.AddTorque(rotationSpeed);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Destroy(gameObject, 5f);
     }
 }
